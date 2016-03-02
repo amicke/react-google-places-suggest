@@ -1,12 +1,7 @@
 {
   "presets": [
     "es2015",
+    "stage-0",
     "react"
   ],
-  "stage": 0,
-  "loose": ["es6.modules", "es6.classes"],
-  "blacklist": [
-    "es6.tailCall",
-    "spec.functionName"
-  ]
 }
