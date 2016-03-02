@@ -1,37 +1,37 @@
 import './index.css'
 
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
-export default class GeoSuggest extends Component {
-  static propTypes = {
+const GeoSuggest = React.createClass({
+  propTypes: {
     onSelectSuggest: PropTypes.func,
     search: PropTypes.string,
     suggestRadius: PropTypes.number,
-  }
+  },
 
-  static defaultProps = {
+  defaultProps: {
     onSelectSuggest: () => {},
     search: '',
     suggestRadius: 20,
-  }
+  },
 
-  state = {
+  state: {
     coordinate: null,
     focusedSuggestIndex: 0,
     selectedLabel: '',
     suggests: [],
-  }
+  },
 
-  componentWillMount() {
+  componentWillMount: function() {
     this.updateSuggests(this.props.search)
-  }
+  },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps: function(nextProps) {
     this.updateSuggests(nextProps.search)
-  }
+  },
 
-  handleSelectSuggest = (suggest) => {
+  handleSelectSuggest: function(suggest) {
     const { onSelectSuggest } = this.props
 
     this.geocodeSuggest(suggest.label, () => {
@@ -39,9 +39,9 @@ export default class GeoSuggest extends Component {
         onSelectSuggest(suggest.label, this.state.coordinate)
       })
     })
-  }
+  },
 
-  updateSuggests(search) {
+  updateSuggests: function(search) {
     const { googleMaps, suggestRadius } = this.props
     const autocompleteService = new googleMaps.places.AutocompleteService()
 
@@ -78,9 +78,9 @@ export default class GeoSuggest extends Component {
 
       this.setState({ focusedSuggestIndex: 0, suggests })
     })
-  }
+  },
 
-  geocodeSuggest(suggestLabel, callback) {
+  geocodeSuggest: function(suggestLabel, callback) {
     const { googleMaps } = this.props
     const geocoder = new googleMaps.Geocoder()
 
@@ -96,9 +96,9 @@ export default class GeoSuggest extends Component {
         this.setState({ coordinate }, callback)
       }
     })
-  }
+  },
 
-  handleKeyDown = (e) => {
+  handleKeyDown: function(e) {
     const { focusedSuggestIndex, suggests } = this.state
 
     switch (e.key) {
@@ -118,21 +118,21 @@ export default class GeoSuggest extends Component {
       }
       break
     }
-  }
+  },
 
-  focusSuggest(index) {
+  focusSuggest: function(index) {
     this.setState({ focusedSuggestIndex: index })
-  }
+  },
 
-  renderMarkerIcon() {
+  renderMarkerIcon: function() {
     return (
       <svg className="placesSuggest_suggestIcon" width="15" height="15" viewBox="0 0 16 24">
         <path d="m12 0c-4.4183 2.3685e-15 -8 3.5817-8 8 0 1.421 0.3816 2.75 1.0312 3.906 0.1079 0.192 0.221 0.381 0.3438 0.563l6.625 11.531 6.625-11.531c0.102-0.151 0.19-0.311 0.281-0.469l0.063-0.094c0.649-1.156 1.031-2.485 1.031-3.906 0-4.4183-3.582-8-8-8zm0 4c2.209 0 4 1.7909 4 4 0 2.209-1.791 4-4 4-2.2091 0-4-1.791-4-4 0-2.2091 1.7909-4 4-4z"/>
       </svg>
     )
-  }
+  },
 
-  renderSuggest(suggest, key) {
+  renderSuggest: function(suggest, key) {
     const { focusedSuggestIndex } = this.state
     const { labelParts } = suggest
 
@@ -150,9 +150,9 @@ export default class GeoSuggest extends Component {
         <span className="placesSuggest_suggestAddress">{ suggest.address }</span>
       </li>
     )
-  }
+  },
 
-  renderSuggests() {
+  renderSuggests: function() {
     const { suggests } = this.state
 
     return (
@@ -160,9 +160,9 @@ export default class GeoSuggest extends Component {
         { suggests.map((suggest, key) => this.renderSuggest(suggest, key)) }
       </ul>
     )
-  }
+  },
 
-  render() {
+  render: function() {
     const { search } = this.props
     const { selectedLabel } = this.state
 
@@ -172,5 +172,7 @@ export default class GeoSuggest extends Component {
         { selectedLabel !== search && search ? this.renderSuggests() : null }
       </div>
     )
-  }
-}
+  },
+})
+
+export default GeoSuggest
