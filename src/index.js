@@ -105,21 +105,21 @@ export default class GeoSuggest extends Component {
     const { focusedSuggestIndex, suggests } = this.state
 
     switch (e.key) {
-      case 'Enter':
-        this.handleSelectSuggest(suggests[focusedSuggestIndex])
-        break
+    case 'Enter':
+      this.handleSelectSuggest(suggests[focusedSuggestIndex])
+      break
 
-      case 'ArrowUp':
-        if (suggests.length > 0 && focusedSuggestIndex > 0) {
-          this.focusSuggest(focusedSuggestIndex - 1)
-        }
-        break
+    case 'ArrowUp':
+      if (suggests.length > 0 && focusedSuggestIndex > 0) {
+        this.focusSuggest(focusedSuggestIndex - 1)
+      }
+      break
 
-      case 'ArrowDown':
-        if (suggests.length > 0 && focusedSuggestIndex < suggests.length - 1) {
-          this.focusSuggest(focusedSuggestIndex + 1)
-        }
-        break
+    case 'ArrowDown':
+      if (suggests.length > 0 && focusedSuggestIndex < suggests.length - 1) {
+        this.focusSuggest(focusedSuggestIndex + 1)
+      }
+      break
     }
   }
 
