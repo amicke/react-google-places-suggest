@@ -27,7 +27,7 @@ export default class GeoSuggest extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.search !== nextProps.search) {
+    if (this.props.search && this.props.search !== nextProps.search) {
       this.updateSuggests(nextProps.search)
     }
   }
