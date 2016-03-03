@@ -42,9 +42,6 @@ export default class GeoSuggest extends Component {
   }
 
   updateSuggests(search) {
-    if (!this.props.googleMaps) {
-      return
-    }
     const { googleMaps, suggestRadius } = this.props
     const autocompleteService = new googleMaps.places.AutocompleteService()
 
@@ -84,10 +81,6 @@ export default class GeoSuggest extends Component {
   }
 
   geocodeSuggest(suggestLabel, callback) {
-    if (!this.props.googleMaps) {
-      return
-    }
-
     const { googleMaps } = this.props
     const geocoder = new googleMaps.Geocoder()
 
