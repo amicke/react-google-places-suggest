@@ -26,10 +26,6 @@ export default class GeoSuggest extends Component {
     suggests: [],
   }
 
-  componentWillMount() {
-    this.updateSuggests(this.props.search)
-  }
-
   componentWillReceiveProps(nextProps) {
     this.updateSuggests(nextProps.search)
   }
@@ -157,6 +153,10 @@ export default class GeoSuggest extends Component {
 
   renderSuggests() {
     const { suggests } = this.state
+
+    if (0 === suggests.length) {
+      return
+    }
 
     return (
       <ul className="placesSuggest_suggests">
