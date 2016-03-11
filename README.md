@@ -38,7 +38,7 @@ export default class MyComponent extends Component {
     const { search } = this.state
 
     return (
-      <GooglePlacesSuggest onSelectSuggest={ this.handleSelectSuggest } search={ search }>
+      <GooglePlacesSuggest onSelectSuggest={ this.handleSelectSuggest } search={ search } apiKey={ YOUR_GOOGLE_API_KEY } >
         <input
           type="text"
           value={ search }
