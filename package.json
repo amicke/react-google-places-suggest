@@ -27,7 +27,7 @@
   "dependencies": {
     "classnames": "^2.1.3",
     "react": "^0.14.1",
-    "react-google-maps-loader": "https://github.com/opuslabs/react-google-maps-loader/tarball/96a8e80cac01d8133593e24af92abd5320ba0c61"
+    "react-google-maps-loader": "https://github.com/opuslabs/react-google-maps-loader/tarball/91bde6378038c618fbb7e0e40db01b131d5412f2"
   },
   "devDependencies": {
     "babel": "~6.5.2",
